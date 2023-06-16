@@ -1,8 +1,8 @@
 module decoder_tb ();
-reg in1;
-reg flag_wrong;
+reg[2:0] in1;
+reg  flag_wrong;
 
-wire out_wire;
+wire[7:0] out_wire;
 
 
 decoder decoder_inst (
@@ -20,76 +20,13 @@ $dumpvars(0, flag_wrong);
 flag_wrong = 0;
 end
 
+    integer i;
 initial begin
-
-// begin test case
-in1 = 0;
-in2 = 0;
-flag_wrong = 0;
-#2
-if (out_wire != 0)
-begin
-    flag_wrong = 1;
-end
-else
-begin
-    flag_wrong = 0;
-end
-// end test case
-#2
-
-
-// begin test case
-in1 = 0;
-in2 = 1;
-flag_wrong = 0;
-#2
-if (out_wire != 0)
-begin
-    flag_wrong = 1;
-end
-else
-begin
-    flag_wrong = 0;
-end
-// end test case
-#2
-
-
-// begin test case
-in1 = 1;
-in2 = 0;
-flag_wrong = 0;
-#2
-if (out_wire != 0)
-begin
-    flag_wrong = 1;
-end
-else
-begin
-    flag_wrong = 0;
-end
-// end test case
-#2
-
-
-// begin test case
-in1 = 1;
-in2 = 1;
-flag_wrong = 0;
-#2
-if (out_wire != 1)
-begin
-    flag_wrong = 1;
-end
-else
-begin
-    flag_wrong = 0;
-end
-// end test case
-#2
-
-$finish;
+    for (i = 0  ; i<=8;i=i+1 ) begin
+        #1
+        in1=i;
+    end
+// $finish;
 end
 
 endmodule 
